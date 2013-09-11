@@ -1,0 +1,10 @@
+.DS_Store
+node_modules
+config/config.js
+*.sublime-project
+*.sublime-workspace
+
+# Vim temp files
+*~
+*.swp
+*.swo
