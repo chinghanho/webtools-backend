@@ -1,3 +1,7 @@
+# Webtools
+
+[![Build Status](https://travis-ci.org/chinghanho/webtools-backend.png?branch=master)](https://travis-ci.org/chinghanho/webtools-backend)
+
 Install all dependencies:
 
     npm install
