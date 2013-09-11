@@ -6,7 +6,7 @@ Launch server for development:
 
     grunt
 
-Runing and Watching tests for your app:
+Runing tests:
 
     npm test
 
