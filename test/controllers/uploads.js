@@ -65,11 +65,6 @@ describe('UploadsController', function() {
             .end(done);
         });
 
-        it('should respond uploaded image url', function (done) {
-
-          done();
-        });
-
       });
 
     });
