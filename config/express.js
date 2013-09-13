@@ -13,7 +13,10 @@ module.exports = function(app, config) {
       level: 9
     }));
 
-    // app.use(express.static(config.root + '/public'));
+    if (config.env === 'development') {
+      console.log(config.root + '/public');
+      app.use(express.static(config.root + '/public'));
+    }
     // app.set('port', config.port);
     // app.set('views', config.root + '/app/views');
     // app.set('view engine', 'jade');
