@@ -77,10 +77,11 @@ describe('UploadsController', function() {
   });
 
   after(function (done) {
-    User.remove(done);
-    exec('rm -rf .tmp', function (err) {
-      if (err) { console.log('exec error: ' + err); }
-      done(err);
+    User.remove(function () {
+      exec('rm -rf .tmp', function (err) {
+        if (err) { console.log('exec error: ' + err); }
+        done(err);
+      });
     });
   });
 
