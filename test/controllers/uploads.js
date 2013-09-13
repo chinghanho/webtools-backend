@@ -41,7 +41,7 @@ describe('UploadsController', function() {
 
       it('should respond 401', function (done) {
         agent.post('/api/resources/image')
-          .attach('image', test_image_path)
+          .attach('file', test_image_path)
           .expect(401)
           .end(done);
       });
@@ -61,8 +61,10 @@ describe('UploadsController', function() {
         it('should respond status 200', function (done) {
           agent.post('/api/resources/image')
             .attach('file', test_image_path)
-            .expect(200)
-            .end(done);
+            .end(function (err, res) {
+              res.statusCode.should.equal(200);
+              done();
+            });
         });
 
       });
