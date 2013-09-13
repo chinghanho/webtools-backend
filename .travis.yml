@@ -4,5 +4,6 @@ node_js:
 services:
   - mongodb
 before_script:
+  - 'sudo apt-get install libmagickwand-dev libmagickcore-dev imagemagick'
   - 'npm install && npm install -g mocha'
   - 'cp config/config.example.js config/config.js'
