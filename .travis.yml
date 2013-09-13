@@ -3,7 +3,8 @@ node_js:
   - '0.10'
 services:
   - mongodb
-before_script:
+before_install:
   - 'sudo apt-get install -qq libmagickwand-dev libmagickcore-dev imagemagick'
-  - 'npm install && npm install -g mocha'
+before_script:
+  - 'npm install -g mocha'
   - 'cp config/config.example.js config/config.js'
