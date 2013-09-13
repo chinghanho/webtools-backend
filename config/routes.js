@@ -17,7 +17,7 @@ var mongoose  = require('mongoose')
   , users     = require('../app/controllers/users')
   , resources = require('../app/controllers/resources')
   , types     = require('../app/controllers/types')
-  , upload    = require('../app/controllers/upload')
+  , uploads    = require('../app/controllers/uploads')
   , sessions  = require('../app/controllers/sessions')
   , comments  = require('../app/controllers/comments');
 
@@ -64,7 +64,7 @@ module.exports = function(app) {
    * UploadsController
    */
 
-  app.post('/api/resources/image', isAuthenticated, upload.uploadImage); // TODO: add test
+  app.post('/api/resources/image', isAuthenticated, uploads.uploadImage);
 
   /**
    * CommentsController
@@ -87,7 +87,7 @@ function isAuthenticated(req, res, next) {
     })
   }
   else {
-    res.send(401);
+    next(new Error(401));
   }
 
 }
