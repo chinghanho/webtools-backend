@@ -40,7 +40,7 @@ exports.uploadImage = function(req, res, next) {
       gravity: "Center"
     }, function(err, stdout, stderr) {
       if (err) throw err;
-      var url = '/system/uploads/pictures/resources' + encodeURIComponent(new_filename);
+      var url = '/system/uploads/images/resources/' + encodeURIComponent(new_filename);
       res.send({ status: 'success', url: url });
     });
 
