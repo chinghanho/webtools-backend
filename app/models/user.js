@@ -29,7 +29,7 @@ var UserSchema = new Schema(
     login:            { type: String, trim: true, lowercase: true, unique: true, required: true },
     salt:             { type: String },
     hashed_password:  { type: String, required: true },
-    email:            { type: String, trim: true, lowercase: true, unique: true },
+    email:            { type: String, trim: true, lowercase: true, index: { unique: true, sparse: true } },
     role:             { type: String, default: 'user', required: true },
     remember_token:   { type: String, required: true },
     resources:       [{ type: Schema.ObjectId, index: true, ref: 'Resource' }],
