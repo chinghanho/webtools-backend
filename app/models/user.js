@@ -32,9 +32,7 @@ var UserSchema = new Schema(
     email:            { type: String, trim: true, lowercase: true, index: { unique: true, sparse: true } },
     role:             { type: String, default: 'user', required: true },
     remember_token:   { type: String, required: true },
-    resources:       [{ type: Schema.ObjectId, index: true, ref: 'Resource' }],
     resources_count:  { type: Number, default: 0 },
-    comments:        [{ type: Schema.ObjectId, index: true, ref: 'Comment' }],
     comments_count:   { type: Number, default: 0 },
     create_at:        { type: Date, default: Date.now },
     update_at:        { type: Date, default: Date.now }
