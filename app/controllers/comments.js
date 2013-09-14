@@ -80,9 +80,10 @@ exports.index = function (req, res, next) {
       res.send(comments);
     });
   }
-
-  Comment.list({}, function(err, data) {
-    res.send(data);
-  });
+  else {
+    Comment.list({}, function(err, data) {
+      res.send(data);
+    });
+  }
 
 };
