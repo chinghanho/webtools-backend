@@ -46,4 +46,26 @@ CommentSchema.methods = {
 
 }
 
+/**
+ * Statics (class method)
+ */
+
+ CommentSchema.statics = {
+
+   /**
+    * List
+    *
+    * @param  {Object} options
+    * @param  {Function} callback
+    * @api public
+    */
+   list: function(options, callback) {
+     this.find(options)
+       .populate('resource_id', 'name')
+       .populate('user_id', 'name')
+       .exec(callback);
+   }
+
+ };
+
 mongoose.model('Comment', CommentSchema);

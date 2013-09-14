@@ -64,3 +64,15 @@ exports.create = function(req, res, next) {
   });
 
 }
+
+/**
+ * Index
+ */
+
+exports.index = function (req, res, next) {
+
+  Comment.list({}, function(err, data) {
+    res.send(data);
+  });
+
+};

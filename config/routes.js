@@ -70,6 +70,7 @@ module.exports = function(app) {
    * CommentsController
    */
 
+  app.get('/api/comments', comments.index);
   app.post('/api/comments', isAuthenticated, comments.create);
 
 }
