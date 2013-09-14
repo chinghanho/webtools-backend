@@ -14,7 +14,6 @@ module.exports = function(app, config) {
     }));
 
     if (config.env === 'development') {
-      console.log(config.root + '/public');
       app.use(express.static(config.root + '/public'));
     }
     // app.set('port', config.port);
