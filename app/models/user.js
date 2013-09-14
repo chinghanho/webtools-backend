@@ -141,6 +141,10 @@ UserSchema.methods = {
     crypto.randomBytes(32, function(ex, buf) {
       callback(buf.toString('hex'));
     });
+  },
+
+  increase_comments_count: function (callback) {
+    this.update({$inc: {comments_count: 1}}, {}, callback);
   }
 
 };
