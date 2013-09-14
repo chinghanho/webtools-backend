@@ -59,17 +59,17 @@ CommentSchema.methods = {
     * @param  {Function} callback
     * @api public
     */
-   list: function(options, callback) {
-     this.find(options)
-       .populate('resource_id', 'name')
-       .populate('user_id', 'name')
-       .exec(callback);
-   },
+  list: function(options, callback) {
+    this.find(options)
+      .populate('resource_id', 'name')
+      .populate('user_id', 'login role')
+      .exec(callback);
+  },
 
-   getCommentsByResourceId: function (resourceId, callback) {
-     this.find({ resource_id: resourceId })
-       .exec(callback);
-   }
+  getCommentsByResourceId: function (resourceId, callback) {
+    this.find({ resource_id: resourceId })
+      .exec(callback);
+  }
 
  };
 
