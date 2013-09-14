@@ -13,7 +13,8 @@ var mongoose = require('mongoose')
   , Comment = mongoose.model('Comment')
   , User = mongoose.model('User')
   , Resource = mongoose.model('Resource')
-  , sanitize = require('validator').sanitize;
+  , sanitize = require('validator').sanitize
+  , async = require('async');
 
 /**
  * Create
@@ -42,14 +43,15 @@ exports.create = function(req, res, next) {
     }
 
     User.findByUserId(user, function(err, user) {
-      user.comments.push(_comment);
-      user.comments_count += 1;
-      user.save(function() {
+      async.series([
+        user.increase_comments_count(function (err) {
+          if (!!err) { return next(new Error(err)); }
+        }),
         Resource.getResourceById(resource, function(err, resource) {
           resource.comments.push(_comment);
           resource.comments_count += 1;
           resource.save();
-        });
+        }),
         res.json({
           body: _comment.body,
           user: _comment.user_id,
@@ -57,8 +59,8 @@ exports.create = function(req, res, next) {
           id: _comment.id,
           create_at: _comment.create_at,
           update_at: _comment.update_at
-        });
-      });
+        })
+      ]);
     });
 
   });
