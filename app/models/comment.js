@@ -50,7 +50,7 @@ CommentSchema.methods = {
  * Statics (class method)
  */
 
- CommentSchema.statics = {
+CommentSchema.statics = {
 
    /**
     * List
@@ -64,13 +64,8 @@ CommentSchema.methods = {
       .populate('resource_id', 'name')
       .populate('user_id', 'login role')
       .exec(callback);
-  },
-
-  getCommentsByResourceId: function (resourceId, callback) {
-    this.find({ resource_id: resourceId })
-      .exec(callback);
   }
 
- };
+};
 
 mongoose.model('Comment', CommentSchema);
