@@ -119,6 +119,53 @@ describe('CommentsController', function() {
 
   });
 
+  describe('GET /api/resources/:resourceId/comments', function () {
+
+    context('when the resource without any comments', function () {
+
+      it('should return an empty array', function (done) {
+        var resource_id = resource.id;
+
+        request(app).get('/api/resources/' + resource_id + '/comments')
+          .end(onResponse);
+
+        function onResponse(err, res) {
+          res.body.should.be.an.instanceOf(Array);
+          res.body.should.be.empty;
+          done();
+        }
+      });
+
+    });
+
+    context('when the resource have comments', function () {
+
+      before(function (done) {
+        var comment = new Comment({
+          body: 'foobar',
+          user_id: user.id,
+          resource_id: resource.id
+        });
+        comment.save(done);
+      });
+
+      it('should return an array contains those comments', function (done) {
+        var resource_id = resource.id;
+
+        request(app).get('/api/resources/' + resource_id + '/comments')
+          .end(onResponse);
+
+        function onResponse(err, res) {
+          res.body.should.be.an.instanceOf(Array);
+          res.body[0].body.should.equal('foobar');
+          done();
+        }
+      });
+
+    });
+
+  });
+
   after(function(done) {
     User.remove(function() {
       Resource.remove(done);

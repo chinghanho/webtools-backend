@@ -71,6 +71,16 @@ exports.create = function(req, res, next) {
 
 exports.index = function (req, res, next) {
 
+  if (!!req.params.resourceId) {
+    var resourceId = req.params.resourceId
+      , resourceId = sanitize(resourceId).xss();
+
+    Comment.getCommentsByResourceId(resourceId, function (err, comments) {
+      if (!!err) { return next(new Error(403)); }
+      res.send(comments);
+    });
+  }
+
   Comment.list({}, function(err, data) {
     res.send(data);
   });

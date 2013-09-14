@@ -64,6 +64,11 @@ CommentSchema.methods = {
        .populate('resource_id', 'name')
        .populate('user_id', 'name')
        .exec(callback);
+   },
+
+   getCommentsByResourceId: function (resourceId, callback) {
+     this.find({ resource_id: resourceId })
+       .exec(callback);
    }
 
  };

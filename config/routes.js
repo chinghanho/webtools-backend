@@ -71,6 +71,7 @@ module.exports = function(app) {
    */
 
   app.get('/api/comments', comments.index);
+  app.get('/api/resources/:resourceId/comments', comments.index)
   app.post('/api/comments', isAuthenticated, comments.create);
 
 }
