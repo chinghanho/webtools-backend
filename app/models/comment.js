@@ -24,8 +24,8 @@ var mongoose = require('mongoose')
 var CommentSchema = new Schema(
   {
     body:        { type: String, required: true, trim: true, validate: maxlength },
-    user_id:     { type: Schema.ObjectId, index: true, ref: 'User' },
-    resource_id: { type: Schema.ObjectId, index: true, ref: 'Resource' },
+    user:        { type: Schema.ObjectId, index: true, ref: 'User' },
+    resource:    { type: Schema.ObjectId, index: true, ref: 'Resource' },
     create_at:   { type: Date, default: Date.now },
     update_at:   { type: Date, default: Date.now }
   }
@@ -38,9 +38,9 @@ var CommentSchema = new Schema(
 CommentSchema.methods = {
 
   newAndSave: function(user, resource, body, callback) {
-    this.user_id = user;
-    this.resource_id = resource;
-    this.body = body;
+    this.user     = user;
+    this.resource = resource;
+    this.body     = body;
     this.save(callback);
   }
 
@@ -61,8 +61,8 @@ CommentSchema.statics = {
     */
   list: function(options, callback) {
     this.find(options)
-      .populate('resource_id', 'name')
-      .populate('user_id', 'login role')
+      .populate('resource', 'name')
+      .populate('user', 'login role')
       .exec(callback);
   }
 

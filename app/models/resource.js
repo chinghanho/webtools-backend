@@ -22,9 +22,8 @@ var ResourceSchema = new Schema(
     img_url:        { type: String, required: true },
     name:           { type: String, trim: true, required: true },
     url:            { type: String, required: true },
-    type_id:        { type: Schema.ObjectId, index: true, ref: 'Type' },
-    user_id:        { type: Schema.ObjectId, index: true, ref: 'User' },
-    comments:      [{ type: Schema.ObjectId, index: true, ref: 'Comment' }],
+    type:           { type: Schema.ObjectId, index: true, ref: 'Type' },
+    user:           { type: Schema.ObjectId, index: true, ref: 'User' },
     comments_count: { type: Number, default: 0 },
     create_at:      { type: Date, default: Date.now },
     update_at:      { type: Date, default: Date.now }
@@ -37,12 +36,12 @@ var ResourceSchema = new Schema(
 
 ResourceSchema.methods = {
 
-  newAndSave: function(name, description, img_url, url, type_id, callback) {
+  newAndSave: function(name, description, img_url, url, type, callback) {
     this.name        = name
     this.description = description
     this.img_url     = img_url
     this.url         = url
-    this.type_id     = type_id
+    this.type        = type
     this.save(callback)
   }
 
@@ -63,21 +62,21 @@ ResourceSchema.statics = {
    */
   list: function(options, callback) {
     this.find(options)
-      .populate('type_id', 'name')
+      .populate('type', 'name')
       .exec(callback);
   },
 
   /**
    * Get resource by id
    *
-   * @param  {Number}   resource_id
+   * @param  {Number}   resource
    * @param  {Function} callback
    * @return {Object}               resource
    * @api public
    */
-  getResourceById: function(resource_id, callback) {
-    this.findOne({ _id: resource_id })
-      .populate('type_id', 'name')
+  getResourceById: function(resource, callback) {
+    this.findOne({ _id: resource })
+      .populate('type', 'name')
       .exec(callback);
   }
 

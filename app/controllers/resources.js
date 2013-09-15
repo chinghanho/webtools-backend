@@ -44,12 +44,12 @@ exports.create = function(req, res, next) {
   var url = sanitize(req.body.url).trim()
     , url = sanitize(url).xss()
 
-  var type_id = sanitize(req.body.type).trim()
-    , type_id = sanitize(type_id).xss()
+  var type = sanitize(req.body.type).trim()
+    , type = sanitize(type).xss()
 
   var resource = new Resource()
 
-  resource.newAndSave(name, description, img_url, url, type_id, function(err, resource) {
+  resource.newAndSave(name, description, img_url, url, type, function(err, resource) {
 
     if (err) {
       console.error(err)
@@ -64,7 +64,6 @@ exports.create = function(req, res, next) {
     }
 
     Type.getTypeById(req.body.type, function(err, type) {
-      type.resources.push(resource)
       type.resources_count += 1
       type.save()
 

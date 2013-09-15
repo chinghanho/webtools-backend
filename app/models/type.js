@@ -19,7 +19,6 @@ var mongoose = require('mongoose')
 var TypeSchema = new Schema(
   {
     name:            { type: String, trim: true, unique: true, required: true },
-    resources:      [{ type: Schema.ObjectId, index: true, ref: 'Resource' }],
     resources_count: { type: Number, default: 0 },
     create_at:       { type: Date, default: Date.now }
   }
@@ -44,8 +43,8 @@ TypeSchema.methods = {
 
 TypeSchema.statics = {
 
-  getTypeById: function(type_id, callback) {
-    this.findOne({ _id: type_id })
+  getTypeById: function(type, callback) {
+    this.findOne({ _id: type })
       .exec(callback);
   },
 
