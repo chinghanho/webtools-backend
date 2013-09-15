@@ -59,7 +59,10 @@ exports.create = function(req, res, next) {
           }),
           res.json({
             body: _comment.body,
-            user: _comment.user,
+            user: {
+              login: user.login,
+              role: user.role
+            },
             resource: _comment.resource,
             id: _comment.id,
             create_at: _comment.create_at,
