@@ -33,6 +33,9 @@ module.exports = function(app) {
   app.get('/admin', function(req, res, next) {
     res.redirect('/#/admin');
   });
+  app.get('/users/:id', function(req, res, next) {
+    res.redirect('/#/users/' + req.param('id'));
+  });
 
   /**
    * TypesController
