@@ -38,7 +38,10 @@ var config = {
     port: 3000,
     db: {
       url: 'mongodb://localhost:27017/webtools-production',
-      options: {}
+      options: {
+        user: '',
+        pass: ''
+      }
     },
     secret_token: '3a78a9efe2829c9cfc7284efb18ac4985478942cd9168e325e2175b9153c9573',
     admin: []
