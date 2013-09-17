@@ -61,6 +61,7 @@ module.exports = function(app) {
    */
 
   app.get('/api/resources', resources.index);
+  app.get('/api/resources/:id', resources.show);
   app.post('/api/resources', isAuthenticated, resources.create); // TODO: add test
 
   /**

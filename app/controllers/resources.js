@@ -27,6 +27,16 @@ exports.index = function(req, res, next) {
 }
 
 /**
+ * Show
+ */
+
+exports.show = function (req, res, next) {
+  Resource.getResourceById(req.params.id, function (err, resource) {
+    res.send(resource);
+  });
+}
+
+/**
  * Create
  */
 
