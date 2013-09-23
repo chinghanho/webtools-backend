@@ -27,9 +27,6 @@ var mongoose  = require('mongoose')
 
 module.exports = function(app) {
 
-  app.get('/', function (req, res) {
-    res.redirect('/#/resources');
-  });
   app.get('/resources', function (req, res) {
     res.redirect('/#/resources');
   });
