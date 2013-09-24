@@ -20,7 +20,14 @@ var mongoose = require('mongoose')
 
 exports.index = function(req, res, next) {
 
-  Resource.list({}, function(err, data) {
+  var page = req.query.page || 1;
+
+  var options = {
+    page: page, // pagination
+    per_page: 24 // items per page
+  };
+
+  Resource.list(options, function(err, data) {
     res.send(data);
   });
 

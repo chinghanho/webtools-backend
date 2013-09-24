@@ -61,7 +61,9 @@ ResourceSchema.statics = {
    * @api public
    */
   list: function(options, callback) {
-    this.find(options)
+    this.find({})
+      .skip((options.page - 1) * options.per_page)
+      .limit(options.per_page)
       .populate('type', 'name')
       .exec(callback);
   },
