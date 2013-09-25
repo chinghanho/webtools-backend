@@ -24,7 +24,7 @@ exports.index = function(req, res, next) {
 
   var options = {
     page: page, // pagination
-    per_page: 24 // items per page
+    per_page: 12 // items per page
   };
 
   Resource.list(options, function(err, data) {
