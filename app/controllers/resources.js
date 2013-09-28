@@ -112,8 +112,7 @@ exports.edit = function (req, res, next) {
 
   Resource.getResourceById(req.params.id, function (err, resource) {
     resource.newAndSave(name, description, img_url, url, type, function(err, resource) {
-      console.log(resource);
-      res.send({});
+      res.send(resource);
     });
   });
 
