@@ -92,3 +92,29 @@ exports.create = function(req, res, next) {
 
   });
 };
+
+exports.edit = function (req, res, next) {
+
+  var name = sanitize(req.body.name).trim()
+    , name = sanitize(name).xss();
+
+  var description = sanitize(req.body.description).trim()
+    , description = sanitize(description).xss();
+
+  var img_url = sanitize(req.body.img_url).trim()
+    , img_url = sanitize(img_url).xss();
+
+  var url = sanitize(req.body.url).trim()
+    , url = sanitize(url).xss();
+
+  var type = sanitize(req.body.type).trim()
+    , type = sanitize(type).xss();
+
+  Resource.getResourceById(req.params.id, function (err, resource) {
+    resource.newAndSave(name, description, img_url, url, type, function(err, resource) {
+      console.log(resource);
+      res.send({});
+    });
+  });
+
+}

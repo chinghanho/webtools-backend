@@ -31,6 +31,16 @@ var ResourceSchema = new Schema(
 );
 
 /**
+ * Hooks
+ */
+
+ResourceSchema.pre('save', function(next) {
+  this.update_at = new Date;
+  next();
+});
+
+
+/**
  * Methods (instance method)
  */
 
